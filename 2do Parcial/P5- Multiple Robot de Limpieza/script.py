@@ -1,19 +1,11 @@
-# %% [markdown]
-# ### 1.- Instalar Dependencias
-
-# %%
 import agentpy as ap
 import matplotlib.pyplot as plt
 import numpy as np
-
 # Visualization
 import seaborn as sns
 import IPython
 
-# %% [markdown]
-# ### 2.- Definición de Agentes
 
-# %%
 # Complete next_random_position
 # Change clenaing room to add more agents
 # Don't use next_position
@@ -115,10 +107,6 @@ class CleaningRobot(ap.Agent):
 
         pass
 
-# %% [markdown]
-# ### 3.- Creación del Ambiente
-
-# %%
 class CleaningRoom(ap.Model):
 
     #Metodo de configuracion
@@ -193,13 +181,7 @@ class CleaningRoom(ap.Model):
 
         pass
 
-# %% [markdown]
-# ### 4.- Simulación
 
-# %% [markdown]
-# Funciones Auxiliares
-
-# %%
 #Convertor de RGB a HEX
 def rgb2hex(r, g, b):
 
@@ -207,20 +189,19 @@ def rgb2hex(r, g, b):
 
   return var
 
-# %%
+
 # Create single-run animation with custom colors
 def animation_plot(model, ax):
     attr_grid = model.room.attr_grid('condition')
     ap.gridplot(attr_grid, ax=ax, color_dict=color_array, convert=True)
 
-# %% [markdown]
 # Parámetros de Simulación
 
-# %%
+
 #Crear paleta de colores
 color_array = {0:rgb2hex(255, 255, 255), 1:rgb2hex(200, 200, 200), 2:rgb2hex(0, 0, 0), 3:rgb2hex(0, 255, 0), None:rgb2hex(255, 255, 255)}
 
-# %%
+
 # Inicializar parametros
 parameters = {
     'dim': 20, # Scenario dimensions
@@ -229,12 +210,11 @@ parameters = {
     'num_robots': 5, # Number of robots
 }
 
-# %%
+
 #Crear instancia
 little_floor = CleaningRoom(parameters)
 
 
-# %%
 #Correr Simulacion
 fig, ax = plt.subplots()
 animation = ap.animate(little_floor, fig, ax, animation_plot, steps = 200)
